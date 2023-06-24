@@ -1,0 +1,10 @@
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+local function onKeyPress(inputObject, gameProcessedEvent)
+	if inputObject.KeyCode == Enum.KeyCode.R then
+		character.Humanoid.Health = 0
+	end
+end
+
+game:GetService("UserInputService").InputBegan:Connect(onKeyPress)
