@@ -1,0 +1,12 @@
+local player = game.Players.LocalPlayer
+local mouse = player:GetMouse()
+
+mouse.Button1Down:Connect(function()
+    local target = mouse.Target
+    if target then
+        local humanoidrootpart = player.Character:FindFirstChild("HumanoidRootPart")
+        if humanoidrootpart then
+            humanoidrootpart.CFrame = target.CFrame + Vector3.new(0, 5, 0)
+        end
+    end
+end)
