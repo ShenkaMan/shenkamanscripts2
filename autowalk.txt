@@ -22,11 +22,9 @@ local function onKeyPress(input)
                     humanoid:Move(moveVector, false)
                 end
             end)
-            print("AutoWalk etkinleştirildi")
         else
             -- AutoWalk'u kapat
             runService:UnbindFromRenderStep("AutoWalk")
-            print("AutoWalk devre dışı bırakıldı")
         end
     end
 end
