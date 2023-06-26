@@ -1,17 +1,23 @@
-local userInputService = game:GetService("UserInputService")
+local disableAutoWalk = true
 
-local function disableAutoWalk()
-    local autoWalkScript = script.Parent -- İlgili Local Script'in Parent'ını ayarlayın
+local function disableAutoWalkFunction()
+    disableAutoWalk = true
+end
 
-    if autoWalkScript then
-        autoWalkScript.Disabled = true
+local function checkCameraAngle()
+    if disableAutoWalk then
+        return
+    end
+
+    local camera = workspace.CurrentCamera
+    if camera then
+        local cameraRotation = camera.CFrame.LookVector
+        local dotProduct = cameraRotation:Dot(Vector3.new(0, 0, 1))
+
+        if dotProduct < 0.7 then
+            disableAutoWalkFunction()
+        end
     end
 end
 
-local function onKeyPress(input)
-    if input.KeyCode == Enum.KeyCode.E then
-        disableAutoWalk()
-    end
-end
-
-userInputService.InputBegan:Connect(onKeyPress)
+game:GetService("RunService").Heartbeat:Connect(checkCameraAngle)
