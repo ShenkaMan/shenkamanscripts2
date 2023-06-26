@@ -1,0 +1,14 @@
+local userInputService = game:GetService("UserInputService")
+
+local inputBeganConnection
+
+inputBeganConnection = userInputService.InputBegan:Connect(function(input, gameProcessedEvent)
+    if gameProcessedEvent then
+        return
+    end
+    
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        inputBeganConnection:Disconnect()
+        print("Local script çalışması durduruldu.")
+    end
+end)
