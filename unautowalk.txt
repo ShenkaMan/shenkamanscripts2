@@ -1,23 +1,7 @@
-local disableAutoWalk = true
+local runService = game:GetService("RunService")
 
-local function disableAutoWalkFunction()
-    disableAutoWalk = true
+local function stopAutoWalk()
+    runService:UnbindFromRenderStep("AutoWalk")
 end
 
-local function checkCameraAngle()
-    if disableAutoWalk then
-        return
-    end
-
-    local camera = workspace.CurrentCamera
-    if camera then
-        local cameraRotation = camera.CFrame.LookVector
-        local dotProduct = cameraRotation:Dot(Vector3.new(0, 0, 1))
-
-        if dotProduct < 0.7 then
-            disableAutoWalkFunction()
-        end
-    end
-end
-
-game:GetService("RunService").Heartbeat:Connect(checkCameraAngle)
+stopAutoWalk()
