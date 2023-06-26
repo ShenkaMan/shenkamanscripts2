@@ -1,0 +1,16 @@
+local runService = game:GetService("RunService")
+
+local function stopScript(scriptName)
+    for _, stepName in ipairs(runService:GetSortedRenderStepList()) do
+        if string.find(stepName, scriptName) then
+            runService:UnbindFromRenderStep(stepName)
+            print(scriptName .. " is stopped.")
+            return
+        end
+    end
+
+    print(scriptName .. " is not running.")
+end
+
+-- İşte kullanım örneği:
+stopScript("AutoWalk")
