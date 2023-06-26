@@ -1,16 +1,17 @@
-local runService = game:GetService("RunService")
+local userInputService = game:GetService("UserInputService")
 
-local function stopScript(scriptName)
-    for _, stepName in ipairs(runService:GetSortedRenderStepList()) do
-        if string.find(stepName, scriptName) then
-            runService:UnbindFromRenderStep(stepName)
-            print(scriptName .. " is stopped.")
-            return
-        end
+local function disableAutoWalk()
+    local autoWalkScript = script.Parent -- İlgili Local Script'in Parent'ını ayarlayın
+
+    if autoWalkScript then
+        autoWalkScript.Disabled = true
     end
-
-    print(scriptName .. " is not running.")
 end
 
--- İşte kullanım örneği:
-stopScript("AutoWalk")
+local function onKeyPress(input)
+    if input.KeyCode == Enum.KeyCode.E then
+        disableAutoWalk()
+    end
+end
+
+userInputService.InputBegan:Connect(onKeyPress)
