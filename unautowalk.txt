@@ -1,7 +1,0 @@
-local runService = game:GetService("RunService")
-
-local function stopAutoWalk()
-    runService:UnbindFromRenderStep("AutoWalk")
-end
-
-stopAutoWalk()
